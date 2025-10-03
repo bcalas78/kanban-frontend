@@ -1,11 +1,16 @@
-// const Dashboard: React.FC = () => {
-//     return (
-//         <div>
-//             <h1>Tableau de bord</h1>
-//         </div>
-//     )
-// };
+import { useAppSelector } from "../app/hooks"
 
 export default function Dashboard() {
-    return <h1>Tableau de bord</h1>
-};
+    const { isAuthenticated, token } = useAppSelector((state) => state.auth);
+
+    return (
+        <div>
+            <h1>Tableau de bord</h1>
+            {isAuthenticated ? (
+                <p>Connecté avec token: {token}</p> 
+            ) : (
+                <p>Non connecté</p>
+            )}
+        </div> 
+    );
+}
